@@ -1,0 +1,66 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: main
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+    github.com/FAIRDataTeam/FAIRDataPoint:
+      branch: develop
+      repo: https://github.com/FAIRDataTeam/FAIRDataPoint.git
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      github.com/FAIRDataTeam/FAIRDataPoint git:
+        commands:
+        - /usr/bin/env sh .sqa/script.flaky-azure-greyhound.sh
+        container: qc.acc_shaky-maroon-hare
+  QC.Doc:
+    repos:
+      github.com/FAIRDataTeam/FAIRDataPoint find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.gamy-auburn-dugong.sh
+        container: qc.doc_cloudy-cinnabar-tang
+      github.com/FAIRDataTeam/FAIRDataPoint git:
+        commands:
+        - /usr/bin/env sh .sqa/script.cheeky-sapphire-dingo.sh
+        container: qc.doc_ready-bistre-dane
+      github.com/FAIRDataTeam/FAIRDataPoint markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.sickly-chestnut-ant.sh
+        container: qc.doc_wheezy-red-ant
+  QC.Lic:
+    repos:
+      github.com/FAIRDataTeam/FAIRDataPoint licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.shaggy-cyan-hamster.sh
+        container: qc.lic_greasy-grey-snail
+  QC.Met:
+    repos:
+      github.com/FAIRDataTeam/FAIRDataPoint cff-converter-python:
+        commands:
+        - /usr/bin/env sh .sqa/script.tacky-xanthic-chipmunk.sh
+        container: qc.met_cranky-pink-markhor
+  QC.Sty:
+    repos:
+      github.com/FAIRDataTeam/FAIRDataPoint checkstyle:
+        commands:
+        - /usr/bin/env sh .sqa/script.goopy-grey-argentino.sh
+        container: qc.sty_craggy-heliotrope-mule
+      github.com/FAIRDataTeam/FAIRDataPoint hadolint:
+        commands:
+        - /usr/bin/env sh .sqa/script.flimsy-ochre-hare.sh
+        container: qc.sty_hilly-taupe-llama
+      github.com/FAIRDataTeam/FAIRDataPoint jsonlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.gummy-sepia-dog.sh
+        container: qc.sty_stinky-orchid-mist
+  QC.Ver:
+    repos:
+      github.com/FAIRDataTeam/FAIRDataPoint get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.tacky-mauve-crab.sh
+        container: qc.ver_hasty-ivory-vulture
+timeout: 5400
